@@ -1,9 +1,38 @@
+header {
+  background: #0C84EC;
+}
 
+//------------
+//-  layout  -
+//------------
+#block-biomeds-branding {
+  @include media-object-container;
+  .site-logo {
+    @include media-object-section;
+  }
+  .site-name {
+    @include media-object-section;
+  }
 
+}
 
+//-----------
+//-  style  -
+//-----------
 
-.site_name {
-	/*display: inline-block;*/
-	font-size:1.5rem;
-	color:$white;
+#block-biomeds-branding {
+  .site-logo {
+    img {
+      width: 200px;
+    }
+  }
+  .site-name {
+    padding-top: $global-padding;
+    width: 20rem;
+    a {
+      color: $white;
+      font-size: 2.2rem;
+    }
+  }
+
 }
