@@ -1,7 +1,6 @@
-#PROXY: "biomeds.dev"
-LOCALPROXY: "biomeds.dev"
+PROXY: "amars.discoveryspace.ca"
 
-THEMENAME: "biomeds"
+THEMENAME: "amars"
 
 # Your project's server will run on localhost:xxxx at this port
 PORT: 8000

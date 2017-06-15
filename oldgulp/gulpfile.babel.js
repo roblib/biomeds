@@ -17,39 +17,20 @@ const $ = plugins();
 const PRODUCTION = !!(yargs.argv.production);
 
 // Load settings from settings.yml
-const { COMPATIBILITY, PORT, PROXY, LOCALPROXY, THEMENAME, UNCSS_OPTIONS, PATHS } = loadConfig();
+const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS } = loadConfig();
 
 function loadConfig() {
   let ymlFile = fs.readFileSync('config.yml', 'utf8');
   return yaml.load(ymlFile);
 }
 
-// ------------------------------------------------------------------------
-//  Task: Build (build the dist folder for prod)
-// ------------------------------------------------------------------------
+// Build the "dist" folder by running all of the below tasks
 gulp.task('build',
-    gulp.series(clean, gulp.parallel(pages, sass, javascript, images, copy), styleGuide));
-// ------------------------------------------------------------------------
-// Task: gulp (Build the site, run the server, and watch for file changes)
-// ------------------------------------------------------------------------
+ gulp.series(clean, gulp.parallel(pages, sass, javascript, images, copy), styleGuide));
+
+// Build the site, run the server, and watch for file changes
 gulp.task('default',
-  //gulp.series('build', serverRemote, watch));
-  gulp.series('build', serverLocal, watch));
-
-
-// ------------------------------------------------------------------------
-// Task: localStatic (Build the site,run the server, watch for file changes )
-// ------------------------------------------------------------------------
-gulp.task('localStatic',
-  gulp.series('build', serverStatic, watch));
-
-// ------------------------------------------------------------------------
-// Task: localDev (Build the site,run the server, watch for file changes )
-// ------------------------------------------------------------------------
-gulp.task('localDev',
-  gulp.series('build', serverLocal, watch));
-
-
+  gulp.series('build', server, watch));
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -135,54 +116,26 @@ function images() {
     .pipe(gulp.dest(PATHS.dist + '/assets/img'));
 }
 
-// Start a proxy server with Browsersync + regex file swapping
-							
-function serverRemote(done) {
-
-const findCss = new RegExp("<link.*" + THEMENAME + "*\/dist\/assets\/css\/app.*", "g");
-const findJs = new RegExp("<script.*" + THEMENAME + "*\/dist\/assets\/js\/app.*", "g");
-
+// Start a server with BrowserSync to preview the site in
+function server(done) {
   browser.init({
+    proxy: {
+      target: 'biomeds.dev'
+    },
+    serveStatic: 'dist/assets/css',
+    files: 'dist/assets/css'
 
-	proxy: PROXY,
-	serveStatic: ["dist/assets"],
-	files: "dist/assets/css/app.css",
-	rewriteRules: [
-		{
-            match: findCss,
-            fn: function (req, res, match) {
-                return '<link rel="stylesheet" type="text/css" href="/css/app.css"/>';
-			}
-		},
-		{
-            match: /<script.*amars*\/dist\/assets\/js\/app.*/g,
-            fn: function (req, res, match) {
-				return '<script src="/js/app.js"></script>';
-			}
-		}
-	]
-
-		
   });
   done();
-}
+  }
 
-// Start a local serve with BrowserSync to preview the site in
-function serverLocal(done) {
-  browser.init({
-    proxy         : LOCALPROXY,
-    injectChanges : true
-  });
-  done();
-}
-
-// Start a local server with BrowserSync to preview the site in
-function serverStatic(done) {
-  browser.init({
-    server: PATHS.dist, port: PORT
-  });
-  done();
-}
+  //// Start a server with BrowserSync to preview the site in
+  //function server(done) {
+  //browser.init({
+    //server: PATHS.dist, port: PORT
+  //});
+  //done();
+//}
 
 // Reload the browser with BrowserSync
 function reload(done) {
@@ -195,10 +148,8 @@ function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch('src/pages/**/*.html').on('all', gulp.series(pages, browser.reload));
   gulp.watch('src/{layouts,partials}/**/*.html').on('all', gulp.series(resetPages, pages, browser.reload));
-  gulp.watch('src/{layouts,partials}/**/*.hbs').on('all', gulp.series(resetPages, pages, browser.reload));
   gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript, browser.reload));
   gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
   gulp.watch('src/styleguide/**').on('all', gulp.series(styleGuide, browser.reload));
 }
-

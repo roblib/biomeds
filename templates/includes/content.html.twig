@@ -1,0 +1,17 @@
+
+    <div class="small-12 columns site-help__wrapper">
+      {{ page.help }}
+    </div>
+    <div class="small-12 columns show-for-medium breadcrumb__wrapper">
+      {{ page.breadcrumb }}
+    </div>
+    {% set content_class = page.sidebar ? 'medium-8' : 'medium-12' %}
+    <div class="small-12 {{ content_class }} columns content__main">
+      {{ page.content }}
+    </div>
+    {% if page.sidebar %}
+      <aside class="small-12 medium-4 columns content__sidebar" role="complementary">
+        {{ page.sidebar }}
+      </aside>
+    {% endif %}
+  

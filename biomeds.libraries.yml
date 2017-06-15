@@ -2,7 +2,7 @@ global:
   version: VERSION
   css:
     base:
-      dist/assets/css/app.css: {}
+      dist/assets/css/app.css: { preprocess: false }
   js:
     dist/assets/js/app.js: {}
   dependencies:

@@ -1,15 +1,9 @@
 // Styling for the header component.
 
 .upei-logo { 
-  /*float: left;*/
-  /*margin: .5rem 0 0 .5rem;*/
-  /*line-height: 0;*/
   svg {
     width: 100px;
     height: auto;
-
-
-
   }
 }
 .menu-bar__wrapper {
@@ -20,8 +14,13 @@
     justify-content: flex-start;
   }
 }
+.topnav {
+  &__wrapper { background: $black; }
+  &__container { @include grid-row; }
 
-.top-bar {
+
+
+  @include top-bar-container;
   $menu_height: 55px;
   padding-top: 0;
   padding-bottom: 0;

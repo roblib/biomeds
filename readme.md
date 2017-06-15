@@ -30,7 +30,7 @@ Once node and bower have completed installing the dependencies, you can run two 
 - Run `npm start` to run Gulp tasks for compiling files and watching for changes to `.scss` files, `.js` files, `.html` and `.hbs` files in the src directory. These files will be compiled into mirrored directories within the dist directory. The static prototype that is generated is viewable at:
 
 ```
-http://localhost:8000
+http://localhost:3000
 ```
 
 Every time changes are made to any of the files in the src/assets, src/layouts, or src/styleguide directory that page will update automatically through BrowserSync.

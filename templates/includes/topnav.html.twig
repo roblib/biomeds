@@ -1,0 +1,27 @@
+      {#_____top-bar_____#}
+      <div class="topnav" id="menu-search-wrapper">
+        
+        {#_____logo_____#}
+
+        <ul class="menu">
+          <li class="top-bar-title">
+            <a class="top-bar-title__link" href="http://upei.ca" target="_blank">
+              <span class="upei-logo top-bar-title__logo">
+                {% include active_theme_path() ~ '/dist/assets/img/logo.svg' %}
+              </span>
+            </a> 
+          </li>
+        </ul>          
+        
+        {#____toggle_____#}
+        <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+          <button class="menu-icon" type="button" data-toggle></button>
+          <div class="title-bar-title">Menu</div>
+        </div>
+
+        {#_____menus_____#}
+        <div class="top-bar-right main-menu__wrapper" id="responsive-menu">
+          {{ page.menus }}
+        </div>
+      </div>
+      {#_____/top-bar_____#}
