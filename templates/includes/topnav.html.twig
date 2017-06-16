@@ -14,10 +14,19 @@
         </ul>          
         
         {#____toggle_____#}
+{# 
         <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
           <button class="menu-icon" type="button" data-toggle></button>
           <div class="title-bar-title">Menu</div>
         </div>
+#}
+
+<div class="title-bar" data-hide-for="medium" >
+  <div class="title-bar-right">
+    <button class="menu-icon" type="button" data-open="offCanvas"></button>
+    <span class="title-bar-title">Menu</span>
+  </div>
+</div>
 
         {#_____menus_____#}
         <div class="top-bar-right main-menu__wrapper" id="responsive-menu">

@@ -2,3 +2,53 @@
 header {
   background: #0C84EC;
 }
+.region-header {
+@include flex-grid-row;
+@extend .align-middle;
+justify-content: space-between;
+.branding {
+@include flex-grid-column(shrink);
+}
+  .block-search {
+@include flex-grid-column(shrink);
+.menu {
+float: right;
+}
+  }
+}
+//.region-header {
+  //@include top-bar-container;
+  //background-color: #0C84EC !important;
+  //ul {
+    //background-color: #0C84EC !important;
+  //}
+  //.branding {
+  //@extend .top-bar-left;
+  //}
+  
+  //.block-search {
+  //@extend .top-bar-right;
+  //}
+  //input {
+  //margin-right:0;
+  //}
+//}
+//.region-header {
+//@include grid-row;
+//display: flex;
+//justify-content: space-between;
+//}
+//.branding {
+//float:left;
+
+//flex: 4;
+//}
+
+//.block-search {
+//align-self: center;
+//float: right;
+//flex: 1;
+//.menu {
+//float: right;
+  //}
+  //}

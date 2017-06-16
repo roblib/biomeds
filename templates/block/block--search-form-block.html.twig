@@ -30,6 +30,7 @@
   set classes = [
     'block',
     'block-search',
+    'site-search',
     'container-inline',
   ]
 %}
@@ -46,9 +47,9 @@
       <li>
         {{ content|without('actions')}}
       </li>
-      <li>
-        {{ content|without('keys')}}
-      </li>
+      {#<li>#}
+        {#{{ content|without('keys')}}#}
+      {#</li>#}
     </ul>
   {% endblock %}
 </div>

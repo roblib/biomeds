@@ -1,11 +1,34 @@
 <div class="l-main">
 
-<div class="topnav__wrapper">
-  <div class="topnav__container">
-    {% include '@biomeds/includes/topnav.html.twig'  %}
+<!--___________________Topnav___________________-->
+
+  <div class="topnav__wrapper">
+    <div class="topnav__container">
+      {% include '@biomeds/includes/topnav.html.twig'  %}
+    </div>
   </div>
-</div>
-      {% include '@biomeds/includes/header.html.twig'  %}
-      {% include '@biomeds/includes/content.html.twig'  %}
-      {% include '@biomeds/includes/footer.html.twig'  %}
+
+
+<!--___________________Header___________________-->
+
+  <header class="header__wrapper" role="banner">
+    {% include '@biomeds/includes/header.html.twig'  %}
+  </header>
+
+<!--___________________Content___________________-->
+
+  <div class="content__container">
+    {% include '@biomeds/includes/content.html.twig'  %}
+  </div>
+
+<!--___________________Footer___________________-->
+
+  <div class="footer__container">
+    {% include '@biomeds/includes/footer.html.twig'  %}
+  </div>
+
+<!--___________________offcanvas___________________-->
+
+    {% include '@biomeds/includes/offcanvas.html.twig'  %}
+
 </div>
