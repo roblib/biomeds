@@ -1,7 +1,11 @@
 #PROXY: "biomeds.dev"
 LOCALPROXY: "biomeds.dev"
-
 THEMENAME: "biomeds"
+
+#Gulp-replace
+REPLACE: 
+  target: "@@icon:'"
+  replacement: "include active_theme_path() ~ '/bower_components/Font-Awesome-SVG-PNG/black/svg/"
 
 # Your project's server will run on localhost:xxxx at this port
 PORT: 8000

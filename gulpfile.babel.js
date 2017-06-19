@@ -1,14 +1,15 @@
 'use strict';
 
-import plugins  from 'gulp-load-plugins';
-import yargs    from 'yargs';
-import browser  from 'browser-sync';
-import gulp     from 'gulp';
-import panini   from 'panini';
-import rimraf   from 'rimraf';
-import sherpa   from 'style-sherpa';
-import yaml     from 'js-yaml';
-import fs       from 'fs';
+import plugins from 'gulp-load-plugins';
+import yargs   from 'yargs';
+import browser from 'browser-sync';
+import gulp    from 'gulp';
+import panini  from 'panini';
+import rimraf  from 'rimraf';
+import sherpa  from 'style-sherpa';
+import yaml    from 'js-yaml';
+import fs      from 'fs';
+import replace from 'gulp-replace';
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -17,13 +18,14 @@ const $ = plugins();
 const PRODUCTION = !!(yargs.argv.production);
 
 // Load settings from settings.yml
-const { COMPATIBILITY, PORT, PROXY, LOCALPROXY, THEMENAME, UNCSS_OPTIONS, PATHS } = loadConfig();
+const { REPLACE, COMPATIBILITY, PORT, PROXY, LOCALPROXY, THEMENAME, UNCSS_OPTIONS, PATHS } = loadConfig();
 
 function loadConfig() {
   let ymlFile = fs.readFileSync('config.yml', 'utf8');
   return yaml.load(ymlFile);
 }
 
+gulp.task('tpl', stringReplace);
 // ------------------------------------------------------------------------
 //  Task: Build (build the dist folder for prod)
 // ------------------------------------------------------------------------
@@ -49,7 +51,12 @@ gulp.task('localStatic',
 gulp.task('localDev',
   gulp.series('build', serverLocal, watch));
 
-
+function stringReplace(done) {
+  gulp.src('templates/**/*.html.twig', {base: './'})
+                          .pipe(replace(REPLACE.target, REPLACE.replacement))
+                          .pipe(gulp.dest('./'));
+                          done();
+                          }
 
 // Delete the "dist" folder
 // This happens every time a build starts
