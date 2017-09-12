@@ -1,5 +1,5 @@
 (function ($) {
-	//$('p').remove();
+    $('h1').hide();
 
   $(document).foundation();
 })(jQuery);
