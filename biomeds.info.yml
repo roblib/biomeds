@@ -8,6 +8,15 @@ base theme: stable
 libraries:
     - biomeds/global
 
+component-libraries:
+    components:
+        paths:
+            - components
+
+    utilities:
+        paths:
+            - components/utilities
+
 regions:
   menus: Menus
   search: Search

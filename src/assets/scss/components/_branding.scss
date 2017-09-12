@@ -2,14 +2,20 @@
 //------------
 //-  layout  -
 //------------
-#block-biomeds-branding {
-  @include media-object-container;
-  .site-logo {
-    @include media-object-section;
-  }
-  .site-name {
-    @include media-object-section;
-  }
+.branding {
+    @include media-object-container;
+    margin-bottom:0;
+    .site-logo {
+        @include media-object-section;
+    }
+    .site-name {
+        @include media-object-section;
+    }
+    @include breakpoint( medium down ) {
+        display: flex;
+        justify-content: center;
+        margin-bottom:$global-margin;
+    }
 
 }
 
@@ -17,20 +23,37 @@
 //-  style  -
 //-----------
 
-#block-biomeds-branding {
-  .site-logo {
-    img {
-      width: 200px;
+.branding {
+    .site-logo {
+        img {
+            width: 138px;
+        }
     }
-  }
-  .site-name {
-    padding-top: $global-padding;
-    width: 20rem;
-    a {
-        font-family: $header-font-family;
-      color: $white;
-      font-size: 2.2rem;
+    .site-name {
+        //padding-top: $global-padding;
+        width: 20rem;
+        a {
+            font-family: $header-font-family;
+            color: $white;
+            font-size: rem-calc(24);
+        }
     }
-  }
+    @include breakpoint(medium) {
 
+        .site-logo {
+            img {
+                width: 200px;
+            }
+        }
+        .site-name {
+            padding-top: $global-padding;
+            width: 20rem;
+            a {
+                font-family: $header-font-family;
+                color: $white;
+                font-size: 2.2rem;
+            }
+        }
+
+    }
 }

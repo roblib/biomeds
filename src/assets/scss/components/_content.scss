@@ -1,13 +1,14 @@
 // Styling for content elements.
 
 .content__container,
-.footer__container
+//.footer__container
+.content__footer
 {
 @include grid-row;
 }
 .content__main,
-.content__sidebar,
-.content__footer {
+.content__sidebar
+{
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -22,4 +23,8 @@
 .content__main img {
  @extend .thumbnail; 
   
+}
+.menu--main {
+    //display:none;
+
 }
